@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using maneger.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using sample.Implement;
 using sample.Interface;
-using sample.model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,10 +16,14 @@ namespace sample.controller
         private AuthenticationProvider _authenticationProvider ;
         private UserDetailsProvider _userDetailsProvider;
 
-        public testController(AuthenticationProvider authenticationProvider, UserDetailsProvider userDetailsProvider)
+        public testController(AuthenticationProvider authenticationProvider,
+            UserDetailsProvider userDetailsProvider
+
+            )
         {
             _authenticationProvider = authenticationProvider;
             _userDetailsProvider = userDetailsProvider;
+
         }
 
         //一個request 傳入jwt
@@ -31,6 +35,8 @@ namespace sample.controller
             AuthenticationManager authenticationManager = new AuthenticationManager(_authenticationProvider, _userDetailsProvider);
             //使用 method authenticate
             Authentication result = authenticationManager.authenticate(jWTAuthentication);
+
+
             return Ok(result);
         }
 

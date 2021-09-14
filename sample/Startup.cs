@@ -1,11 +1,14 @@
+using maneger.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using sample.Implement;
 using sample.Interface;
+using sample.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,8 +29,11 @@ namespace sample
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddSingleton<AuthenticationProvider, EyesmediaAuthenticationProvider>();
-            services.AddSingleton<UserDetailsProvider, MobiiUserDetailsProvider>();
+            services.AddDbContext<tAFPDBContext>(options => options.UseMySQL(Configuration.GetConnectionString("MySqlDatabase")));
+            services.AddScoped<AuthenticationProvider, EyesmediaAuthenticationProvider>();
+            services.AddScoped<UserDetailsProvider, MobiiUserDetailsProvider>();
+
+            services.AddScoped<Imember, MemberImplement>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

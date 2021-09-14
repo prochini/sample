@@ -1,4 +1,5 @@
 ﻿using sample.Interface;
+using sample.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,8 +22,8 @@ namespace sample.Implement
         {
             string id = "";
             authenticationProvider.authenticate(authentication);
-            userDetailProvider.GetUserDetails(id);
-            return authentication;
+            var res = userDetailProvider.GetUserDetails(id);
+            return res.Result;
         }
 
     }

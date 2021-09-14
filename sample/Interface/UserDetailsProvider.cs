@@ -1,4 +1,5 @@
-﻿using sample.model;
+﻿using maneger.Interfaces;
+using sample.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ namespace sample.Interface
 {
     public abstract class UserDetailsProvider
     {
-        public abstract UserDetails GetUserDetails(string loginId);
+        public abstract Task<UserDetails> GetUserDetails(string loginId);
 
     }
 }
