@@ -27,7 +27,7 @@ namespace sample.Implement
             UserInfo.MobiiUser = await _db.MobiiUsers.Where(x => x.UserId == id).FirstOrDefaultAsync();
             UserInfo.TbaseUserinfo = await _db.TbaseUserinfos.Where(x => x.UserInfoId == UserInfo.MobiiUser.TbaseUserinfoId).FirstOrDefaultAsync();
             UserInfo.TbaseUserprofile = await _db.TbaseUserprofiles.Where(x => x.UserProfileUserInfoCode == UserInfo.TbaseUserinfo.UserInfoCode).FirstOrDefaultAsync();
-            UserInfo.TbaseUserfavourite1 = await _db.TbaseUserfavourite1s.Where(x => x.UserFavouriteUserInfoCode == UserInfo.TbaseUserinfo.UserInfoCode).ToListAsync();
+
             return UserInfo;
         }
 
